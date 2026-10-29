@@ -35,10 +35,10 @@ try {
     new Promise((r) => { pending[++id] = r; ws.send(JSON.stringify({ id, method, params })); });
   const evaluate = async (expression) =>
     (await send("Runtime.evaluate", { expression, returnByValue: true })).result.value;
-  const press = async (key) => {
+  const press = async (key, wait = 150) => {
     await send("Input.dispatchKeyEvent", { type: "keyDown", key, text: key });
     await send("Input.dispatchKeyEvent", { type: "keyUp", key });
-    await sleep(150);
+    await sleep(wait);
   };
   const ui = () => evaluate(`({
     pattern: pattern.textContent,
@@ -83,6 +83,14 @@ try {
   assert.equal(s.status, "playing");
   assert.equal(s.remaining, 6);
   assert.equal(s.message, "");
+
+  // Fast typing over a slow network (like a hosted server) must not drop letters.
+  await send("Network.emulateNetworkConditions", {
+    offline: false, latency: 200, downloadThroughput: -1, uploadThroughput: -1,
+  });
+  for (const key of "xyz") await press(key, 0);
+  await sleep(2000);
+  assert.deepEqual(await evaluate("state.guessed_letters"), ["x", "y", "z"]);
 
   console.log(`browser e2e OK (${requests.length} API requests)`);
   ws.close();

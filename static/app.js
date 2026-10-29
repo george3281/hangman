@@ -15,7 +15,10 @@ const els = {
 
 let gameId = null;
 let state = null;
-let busy = false;
+// Requests run one at a time, in order, so fast typing isn't dropped and a
+// late guess response can't overwrite a newer game.
+let queue = Promise.resolve();
+const enqueue = (task) => (queue = queue.then(task));
 
 for (const letter of "abcdefghijklmnopqrstuvwxyz") {
   const button = document.createElement("button");
@@ -37,29 +40,31 @@ async function api(path, body) {
   return data;
 }
 
-async function newGame(event) {
+function newGame(event) {
   event?.preventDefault();
-  try {
-    state = await api("/api/games", { difficulty: els.difficulty.value });
-    gameId = state.game_id;
-    render();
-  } catch (err) {
-    showMessage(err.message, "error");
-  }
+  const difficulty = els.difficulty.value;
+  return enqueue(async () => {
+    try {
+      state = await api("/api/games", { difficulty });
+      gameId = state.game_id;
+      render();
+    } catch (err) {
+      showMessage(err.message, "error");
+    }
+  });
 }
 
-async function guess(letter) {
-  if (!state || state.status !== "playing" || busy) return;
-  if (state.guessed_letters.includes(letter)) return;
-  busy = true;
-  try {
-    state = await api(`/api/games/${gameId}/guess`, { letter });
-    render();
-  } catch (err) {
-    showMessage(err.message, "error");
-  } finally {
-    busy = false;
-  }
+function guess(letter) {
+  return enqueue(async () => {
+    if (!state || state.status !== "playing") return;
+    if (state.guessed_letters.includes(letter)) return;
+    try {
+      state = await api(`/api/games/${gameId}/guess`, { letter });
+      render();
+    } catch (err) {
+      showMessage(err.message, "error");
+    }
+  });
 }
 
 function render() {
