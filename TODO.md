@@ -61,16 +61,16 @@ testing, and cloud deployment.
 
 ## Phase 3 - Flask Server and REST API
 
-- [ ] Create `server.py` with Flask.
-- [ ] Store active games in memory, keyed by a unique game ID.
-- [ ] `POST /api/games` - create a game (201).
-- [ ] `GET /api/games/{game_id}` - current state (200).
-- [ ] `POST /api/games/{game_id}/guess` - submit a letter (200).
-- [ ] Validate difficulty and guess input; reject malformed JSON (400).
-- [ ] Return 404 for unknown game IDs and 409 for guesses on finished games.
-- [ ] Return JSON for every response, including errors.
-- [ ] Never include the word while status is `playing`.
-- [ ] Add API tests.
+- [x] Create `server.py` with Flask.
+- [x] Store active games in memory, keyed by a unique game ID.
+- [x] `POST /api/games` - create a game (201).
+- [x] `GET /api/games/{game_id}` - current state (200).
+- [x] `POST /api/games/{game_id}/guess` - submit a letter (200).
+- [x] Validate difficulty and guess input; reject malformed JSON (400).
+- [x] Return 404 for unknown game IDs and 409 for guesses on finished games.
+- [x] Return JSON for every response, including errors.
+- [x] Never include the word while status is `playing`.
+- [x] Add API tests.
 
 **Done when:** a full game can be played with `curl` alone.
 
