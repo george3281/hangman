@@ -106,9 +106,9 @@ testing, and cloud deployment.
 
 ## Phase 6 - Deployment
 
-- [ ] Add `requirements.txt` with Flask and Gunicorn.
-- [ ] Add `render.yaml` (one worker, binds to `$PORT`).
-- [ ] Write `README.md` with local run instructions and API docs.
+- [x] Add `requirements.txt` with Flask and Gunicorn.
+- [x] Add `render.yaml` (one worker, binds to `$PORT`).
+- [x] Write `README.md` with local run instructions and API docs.
 - [ ] Push to GitHub.
 - [ ] Create the Render web service from the repository.
 - [ ] Play a complete game on the public HTTPS URL.

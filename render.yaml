@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: hangman
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    # One worker: games are stored in memory and must be shared by all requests.
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --workers 1 server:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.5
