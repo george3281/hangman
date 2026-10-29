@@ -9,6 +9,21 @@ The server holds every game and decides the result of each guess. The browser
 only sends letters with `fetch()` and draws the JSON state the server returns.
 The hidden word is sent to the browser only after a game is won or lost.
 
+## How a guess works
+
+1. The player clicks a letter or presses a key. `app.js` sends
+   `POST /api/games/{game_id}/guess` with `{"letter": "e"}` using `fetch()`.
+2. Flask (`server.py`) finds the game by ID, checks the request body, and
+   calls `HangmanGame.guess()` in `game.py`.
+3. The engine records the letter, decides hit or miss, and updates the
+   pattern, remaining guesses, and status.
+4. Flask returns the new state as JSON (200), or an `{"error": ...}` with
+   400/404/409.
+5. `app.js` redraws the pattern, letter lists, keyboard, gallows, and message
+   from that JSON. It never decides hits or misses itself.
+
+You can watch steps 1 and 4 in Chrome DevTools > Network > Fetch/XHR.
+
 ## Project layout
 
 ```
@@ -102,8 +117,20 @@ curl -s http://127.0.0.1:5000/api/games/GAME_ID
 3. Open the `onrender.com` URL. Free instances sleep when idle, so the first
    load can take up to a minute.
 
-Games are kept in memory, so the server uses a single worker and active games
-are lost when the service restarts or sleeps.
+## Known limitations
+
+- Games live in server memory. They are lost when the service restarts, and
+  Render's free tier restarts it after about 15 minutes idle. A player
+  mid-game then gets "Game not found" and must press **New Game**.
+- Because of in-memory storage, the server must run with one Gunicorn worker.
+  Scaling out would need shared storage such as a database or Redis.
+- Finished games are never deleted from memory. This is fine at class scale
+  but would need cleanup for heavy traffic.
+- After a loss, the word is shown in the message but the pattern's blanks are
+  not filled in.
+- `tests/browser_e2e.mjs` defaults to the macOS Chrome path; set `CHROME` on
+  other systems.
+- The word lists in `words/` are the course-provided lists.
 
 ## Scope
 
