@@ -50,12 +50,12 @@ testing, and cloud deployment.
 
 ## Phase 2 - Word Management
 
-- [ ] Create `word_manager.py`.
-- [ ] Load Easy, Medium, and Hard word lists.
-- [ ] Keep only alphabetic words; normalize case; drop duplicates.
-- [ ] Select a random word by difficulty.
-- [ ] Raise a clear error for an invalid difficulty.
-- [ ] Add tests for loading and selection.
+- [x] Create `word_manager.py`.
+- [x] Load Easy, Medium, and Hard word lists.
+- [x] Keep only alphabetic words; normalize case; drop duplicates.
+- [x] Select a random word by difficulty.
+- [x] Raise a clear error for an invalid difficulty.
+- [x] Add tests for loading and selection.
 
 **Done when:** a random word can be requested from every difficulty and bad difficulties are rejected.
 
