@@ -3,7 +3,7 @@
 A web-based Hangman game with a Flask REST server and an HTML/CSS/JavaScript
 browser client. CSE 4095 - Agentic Programming.
 
-**Live app:** https://YOUR-SERVICE.onrender.com/
+**Live app:** https://hangman-3967.onrender.com/
 
 The server holds every game and decides the result of each guess. The browser
 only sends letters with `fetch()` and draws the JSON state the server returns.

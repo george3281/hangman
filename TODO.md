@@ -110,8 +110,8 @@ testing, and cloud deployment.
 - [x] Add `render.yaml` (one worker, binds to `$PORT`).
 - [x] Write `README.md` with local run instructions and API docs.
 - [x] Push to GitHub.
-- [ ] Create the Render web service from the repository.
-- [ ] Play a complete game on the public HTTPS URL.
+- [x] Create the Render web service from the repository.
+- [x] Play a complete game on the public HTTPS URL.
 
 **Done when:** the public URL serves the game and a full game can be played there.
 
