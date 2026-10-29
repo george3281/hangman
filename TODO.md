@@ -91,17 +91,18 @@ testing, and cloud deployment.
 
 ## Phase 5 - Testing and Debugging
 
-- [ ] Games start at all three difficulties.
-- [ ] Correct and incorrect guesses.
-- [ ] Repeated and invalid guesses.
-- [ ] Win and loss paths.
-- [ ] New game after a finished game.
-- [ ] Invalid API requests (bad JSON, bad difficulty, unknown ID).
-- [ ] Hidden word not exposed during play.
-- [ ] Static page and assets served correctly.
+- [x] Games start at all three difficulties.
+- [x] Correct and incorrect guesses.
+- [x] Repeated and invalid guesses.
+- [x] Win and loss paths.
+- [x] New game after a finished game.
+- [x] Invalid API requests (bad JSON, bad difficulty, unknown ID).
+- [x] Hidden word not exposed during play.
+- [x] Static page and assets served correctly.
+- [x] Automated browser play-through (`tests/browser_e2e.mjs`): DOM updates after each guess, end-of-game lockout, new game.
 - [ ] Manual browser test: play several games, inspect a guess request in Chrome DevTools.
 
-**Done when:** `python -m unittest` passes and manual play works locally.
+**Done when:** `python -m unittest` and `node tests/browser_e2e.mjs` pass and manual play works locally.
 
 ## Phase 6 - Deployment
 
