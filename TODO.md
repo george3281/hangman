@@ -33,18 +33,18 @@ testing, and cloud deployment.
 
 ## Phase 1 - Project Skeleton and Core Game Engine
 
-- [ ] Create the project directory structure.
-- [ ] Add `words/easy.txt`, `words/medium.txt`, `words/hard.txt`.
-- [ ] Create `game.py` with a `HangmanGame` class.
-- [ ] Store the hidden word internally.
-- [ ] Track guessed letters and incorrect letters.
-- [ ] Track the maximum number of incorrect guesses (6).
-- [ ] Validate single-letter guesses and reject duplicates.
-- [ ] Generate the masked word pattern.
-- [ ] Detect wins and losses (`playing`, `won`, `lost`).
-- [ ] Reject guesses after the game ends.
-- [ ] Return a client-safe state dictionary; reveal the word only after the game ends.
-- [ ] Add unit tests for the game engine.
+- [x] Create the project directory structure.
+- [x] Add `words/easy.txt`, `words/medium.txt`, `words/hard.txt`.
+- [x] Create `game.py` with a `HangmanGame` class.
+- [x] Store the hidden word internally.
+- [x] Track guessed letters and incorrect letters.
+- [x] Track the maximum number of incorrect guesses (6).
+- [x] Validate single-letter guesses and reject duplicates.
+- [x] Generate the masked word pattern.
+- [x] Detect wins and losses (`playing`, `won`, `lost`).
+- [x] Reject guesses after the game ends.
+- [x] Return a client-safe state dictionary; reveal the word only after the game ends.
+- [x] Add unit tests for the game engine.
 
 **Done when:** the engine is fully tested without a web server.
 
