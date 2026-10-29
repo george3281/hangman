@@ -76,16 +76,16 @@ testing, and cloud deployment.
 
 ## Phase 4 - Browser Client
 
-- [ ] Serve `static/index.html`, `static/style.css`, `static/app.js` from Flask at `/`.
-- [ ] Difficulty selector and New Game button.
-- [ ] Display masked word, guessed letters, incorrect letters, remaining guesses.
-- [ ] On-screen alphabet keyboard plus physical keyboard input.
-- [ ] Disable already-guessed letters and the keyboard after the game ends.
-- [ ] Use `fetch()` for every server interaction.
-- [ ] SVG Hangman drawing that adds a body part per incorrect guess.
-- [ ] Win/loss message showing the revealed word.
-- [ ] Start another game without reloading the page.
-- [ ] Usable at desktop and phone widths.
+- [x] Serve `static/index.html`, `static/style.css`, `static/app.js` from Flask at `/`.
+- [x] Difficulty selector and New Game button.
+- [x] Display masked word, guessed letters, incorrect letters, remaining guesses.
+- [x] On-screen alphabet keyboard plus physical keyboard input.
+- [x] Disable already-guessed letters and the keyboard after the game ends.
+- [x] Use `fetch()` for every server interaction.
+- [x] SVG Hangman drawing that adds a body part per incorrect guess.
+- [x] Win/loss message showing the revealed word.
+- [x] Start another game without reloading the page.
+- [x] Usable at desktop and phone widths.
 
 **Done when:** a full game can be played in the browser and the JavaScript never holds the hidden word during play.
 

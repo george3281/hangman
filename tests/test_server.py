@@ -129,6 +129,20 @@ class ServerTests(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
         self.assertIn("error", res.get_json())
 
+    def test_serves_browser_client(self):
+        res = self.client.get("/")
+        self.assertEqual(res.status_code, 200)
+        self.assertIn(b'<script src="app.js">', res.data)
+        for asset in ["/app.js", "/style.css"]:
+            with self.subTest(asset=asset):
+                self.assertEqual(self.client.get(asset).status_code, 200)
+
+    def test_browser_client_has_no_word_list(self):
+        js = self.client.get("/app.js").data
+        self.assertIn(b"fetch(", js)
+        self.assertNotIn(b"eagle", js)
+        self.assertNotIn(b"words/", js)
+
     def test_wrong_method_returns_json(self):
         res = self.client.delete("/api/games")
         self.assertEqual(res.status_code, 405)
